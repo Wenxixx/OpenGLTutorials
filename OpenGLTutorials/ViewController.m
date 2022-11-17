@@ -130,7 +130,7 @@ typedef enum : NSUInteger {
             //获取CMVImageBufferRef中的uv数据
             uint8_t *uv_frame = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 1);
             
-//            [self.renderView displayWithNV12yBuffer:y_frame uvBuffer:uv_frame width:pixelWidth height:pixelHeight];
+            [self.renderView renderWithYData:y_frame UVData:uv_frame width:(int)pixelWidth height:(int)pixelHeight];
         } else {
             uint8_t *rgbaData = CVPixelBufferGetBaseAddress(imageBuffer);
             size_t width = CVPixelBufferGetWidth(imageBuffer);
