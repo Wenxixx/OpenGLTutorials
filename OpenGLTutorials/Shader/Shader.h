@@ -13,15 +13,19 @@
 NSString *const vertexShaderString = SHADER_STRING
 (
     attribute vec4 vertexPosition;
+    varying vec4 vertexColor;
     void main(void) {
-        gl_Position = vertexPosition;
+        // 将顶点坐标y翻转处理
+        gl_Position = vec4(vertexPosition.x, -vertexPosition.y, vertexPosition.z, vertexPosition.w);
+        vertexColor = vec4(0.5, 0, 0, 1.0);
     }
  );
 
 NSString *const fragmentShaderString = SHADER_STRING
 (
+   varying highp vec4 vertexColor;
     void main(void){
-        gl_FragColor = vec4(1, 0, 0, 1);
+        gl_FragColor = vertexColor;
     }
  );
 

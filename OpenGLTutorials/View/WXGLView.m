@@ -85,13 +85,13 @@
     // 绘制三角形
     [self drawTriangle];
     // 绘制矩形
-    [self drawRectangle];
+//    [self drawRectangle];
     
     // 渲染纹理
 //    [self setupTexture2];
 //    [self drawImageWithProgram:_program];
     // 渲染纹理(复用程序)
-    [self renderTextureReuseProgram];
+//    [self renderTextureReuseProgram];
 }
 
 + (Class)layerClass
