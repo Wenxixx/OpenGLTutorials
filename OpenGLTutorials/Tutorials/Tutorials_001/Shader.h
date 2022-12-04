@@ -16,8 +16,10 @@ NSString *const vertexShaderString = SHADER_STRING
     varying vec4 vertexColor;
     void main(void) {
         // 将顶点坐标y翻转处理
-        gl_Position = vec4(vertexPosition.x, -vertexPosition.y, vertexPosition.z, vertexPosition.w);
-        vertexColor = vec4(0.5, 0, 0, 1.0);
+//        gl_Position = vec4(vertexPosition.x, -vertexPosition.y, vertexPosition.z, vertexPosition.w);
+//        vertexColor = vec4(0.5, 0, 0, 1.0);
+        gl_Position = vertexPosition;
+        vertexColor = vec4(vertexPosition.xyz, 1.0);
     }
  );
 

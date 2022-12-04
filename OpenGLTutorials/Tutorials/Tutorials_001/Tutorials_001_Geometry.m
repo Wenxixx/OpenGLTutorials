@@ -1,17 +1,31 @@
 //
-//  WXGLView+Geometry.m
-//  OpenGL
+//  Tutorials_001_Geometry.m
+//  OpenGLTutorials
 //
-//  Created by Steven Deng on 2022/8/10.
+//  Created by Steven Deng on 2022/11/22.
 //
 
-#import "WXGLView+Geometry.h"
+#import "Tutorials_001_Geometry.h"
 #import <OpenGLES/gltypes.h>
-#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES3/gl.h>
+#import <UIKit/UIKit.h>
 
-@implementation WXGLView (Geometry)
+@implementation Tutorials_001_Geometry
 
-- (void)drawTriangle {
+#pragma mark - WXRenderProtocol
+- (void)setupExtraEnv:(GLint)program {
+    // do nothing
+}
+
+
+- (void)renderWithContext:(EAGLContext *)context {
+    // 绘制三角形
+    [self drawTriangle:context];
+    // 绘制矩形
+    [self drawRectangle:context];
+}
+
+- (void)drawTriangle:(EAGLContext *)context {
     int vertexPositionIndex = 0;
     glEnableVertexAttribArray(vertexPositionIndex);
     // 三角形顶点
@@ -19,15 +33,6 @@
         0.0f, 1.0f, 0.0f,
         -1.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
-    };
-    // 练习：绘制两个相连的三角形 https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
-    float vertices2[] = {
-        -1.0f, 1.0f, 0.0f,
-        -1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f,
-        1.0f, 0.0f, 0.0f,
-        1.0f, -1.0f, 0.0f,
     };
     
     // 创建并提交顶点坐标到顶点VBO
@@ -47,7 +52,7 @@
     glClearColor(0.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    // 绘制方式1: drawElements (通过指定的顶点索引绘制)
+    // 绘制方式1: drawElements (通过指定的顶点索引绘制,可减少bufferData顶点数据)
     const GLint Indeces[] = {
         0, 1, 2,
     };
@@ -59,13 +64,11 @@
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
     
     // 绘制方式2: drawArrays
-//    glDrawArrays(GL_TRIANGLES, 0, 2);
-//    glDrawArrays(GL_TRIANGLES, 0, 6);
-    [self.context presentRenderbuffer:GL_RENDERBUFFER];
+//    glDrawArrays(GL_TRIANGLES, 0, 3);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
-
-- (void)drawRectangle {
+- (void)drawRectangle:(EAGLContext *)context {
     int vertexPositionIndex = 0;
     glEnableVertexAttribArray(vertexPositionIndex);
     // 矩形顶点(通过索引绘制，实际只需要4个顶点就行)
@@ -99,8 +102,8 @@
 //                          );
     
     // 背景
-    glClearColor(0.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+//    glClearColor(0.0, 1.0, 1.0, 1.0);
+//    glClear(GL_COLOR_BUFFER_BIT);
     
     /*
      GL_TRIANGLES / GL_TRIANGLE_STRIP / GL_TRIANGLE_FAN: 三角形方式填充
@@ -118,12 +121,13 @@
     glGenBuffers(1, &indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indeces), Indeces, GL_STATIC_DRAW);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);
     
     // 绘制方式2: drawArrays
-//    glDrawArrays(GL_LINE_STRIP, 0, 5);  // GL_TRIANGLE_STRIP： 绘制矩形，需要绘制6个顶点
-    
-    [self.context presentRenderbuffer:GL_RENDERBUFFER];
+    // GL_TRIANGLE_STRIP: 绘制填充矩形
+    // GL_LINE_STRIP: 绘制填充矩形
+//    glDrawArrays(GL_LINE_STRIP, 0, 5);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 

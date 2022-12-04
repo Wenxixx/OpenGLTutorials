@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,21 +18,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIv-5p-1cC">
-                                <rect key="frame" x="47" y="64" width="320" height="240"/>
+                                <rect key="frame" x="48" y="68" width="318" height="238.5"/>
                                 <color key="backgroundColor" red="0.47986878153653284" green="0.76942896842956543" blue="0.64734802542032843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RIv-5p-1cC" secondAttribute="height" multiplier="4:3" id="MfE-E4-QJV"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-Cw-D6y" customClass="WXGLView">
-                                <rect key="frame" x="47" y="324" width="320" height="240"/>
+                                <rect key="frame" x="48" y="326.5" width="318" height="239"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kxr-Cw-D6y" secondAttribute="height" multiplier="4:3" id="k3p-hD-4mD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQv-GX-7Av" customClass="WXSampleBufferDisplayView">
-                                <rect key="frame" x="47" y="584" width="320" height="240"/>
+                                <rect key="frame" x="48" y="585.5" width="318" height="238.5"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HQv-GX-7Av" secondAttribute="height" multiplier="4:3" id="UAU-fi-dts"/>
@@ -54,8 +54,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="glRenderView" destination="kxr-Cw-D6y" id="YTY-qB-HM5"/>
                         <outlet property="previewView" destination="RIv-5p-1cC" id="5cp-UI-SuY"/>
-                        <outlet property="rgbRenderView" destination="kxr-Cw-D6y" id="NDp-TN-acp"/>
                         <outlet property="sampleBufferView" destination="HQv-GX-7Av" id="WMr-Rc-jxG"/>
                     </connections>
                 </viewController>

@@ -19,9 +19,9 @@
 		1E7265AE28A9C91B00A8965A /* bilinearfiltering.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E7265AD28A9C91B00A8965A /* bilinearfiltering.png */; };
 		1E74949A2923E8A200A07173 /* WXCVPixelBufferUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7494992923E8A100A07173 /* WXCVPixelBufferUtil.m */; };
 		1E7494A32923E8B100A07173 /* WXSampleBufferDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E74949B2923E8B100A07173 /* WXSampleBufferDisplayView.m */; };
-		1E7494A42923E8B100A07173 /* WXNV12View.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E74949C2923E8B100A07173 /* WXNV12View.m */; };
-		1E7494A52923E8B100A07173 /* WXGLView+Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E74949F2923E8B100A07173 /* WXGLView+Texture.m */; };
-		1E7494A62923E8B100A07173 /* WXGLView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7494A12923E8B100A07173 /* WXGLView+Geometry.m */; };
+		9D878BE7292CBE9A00691853 /* Tutorials_001_Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D878BE6292CBE9A00691853 /* Tutorials_001_Geometry.m */; };
+		9D878BEA292CBEC000691853 /* Practices_001.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D878BE9292CBEC000691853 /* Practices_001.m */; };
+		9DEBD8C5293B4ED1002F3C7B /* Tutorials_002_Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEBD8C4293B4ED1002F3C7B /* Tutorials_002_Texture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,13 +48,13 @@
 		1E7494982923E8A100A07173 /* WXCVPixelBufferUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCVPixelBufferUtil.h; sourceTree = "<group>"; };
 		1E7494992923E8A100A07173 /* WXCVPixelBufferUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCVPixelBufferUtil.m; sourceTree = "<group>"; };
 		1E74949B2923E8B100A07173 /* WXSampleBufferDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSampleBufferDisplayView.m; sourceTree = "<group>"; };
-		1E74949C2923E8B100A07173 /* WXNV12View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNV12View.m; sourceTree = "<group>"; };
-		1E74949D2923E8B100A07173 /* WXGLView+Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXGLView+Texture.h"; sourceTree = "<group>"; };
 		1E74949E2923E8B100A07173 /* WXSampleBufferDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSampleBufferDisplayView.h; sourceTree = "<group>"; };
-		1E74949F2923E8B100A07173 /* WXGLView+Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WXGLView+Texture.m"; sourceTree = "<group>"; };
-		1E7494A02923E8B100A07173 /* WXGLView+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXGLView+Geometry.h"; sourceTree = "<group>"; };
-		1E7494A12923E8B100A07173 /* WXGLView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WXGLView+Geometry.m"; sourceTree = "<group>"; };
-		1E7494A22923E8B100A07173 /* WXNV12View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNV12View.h; sourceTree = "<group>"; };
+		9D878BE5292CBE9A00691853 /* Tutorials_001_Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tutorials_001_Geometry.h; sourceTree = "<group>"; };
+		9D878BE6292CBE9A00691853 /* Tutorials_001_Geometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tutorials_001_Geometry.m; sourceTree = "<group>"; };
+		9D878BE8292CBEC000691853 /* Practices_001.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Practices_001.h; sourceTree = "<group>"; };
+		9D878BE9292CBEC000691853 /* Practices_001.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Practices_001.m; sourceTree = "<group>"; };
+		9DEBD8C3293B4ED1002F3C7B /* Tutorials_002_Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tutorials_002_Texture.h; sourceTree = "<group>"; };
+		9DEBD8C4293B4ED1002F3C7B /* Tutorials_002_Texture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tutorials_002_Texture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 			children = (
 				1E7265AB28A94A1C00A8965A /* texture.jpg */,
 				1E7265AD28A9C91B00A8965A /* bilinearfiltering.png */,
-				1E7265A328A8932000A8965A /* Shader */,
+				9D878BE4292CBE5800691853 /* Tutorials */,
 				1E7265A228A8932000A8965A /* Util */,
 				1E7265A428A8932000A8965A /* View */,
 				1E72658928A892E100A8965A /* AppDelegate.h */,
@@ -117,31 +117,47 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		1E7265A328A8932000A8965A /* Shader */ = {
-			isa = PBXGroup;
-			children = (
-				1E7265A528A8933300A8965A /* Shader.h */,
-				1E7265AA28A948E700A8965A /* TextureShader.h */,
-				1E7494972923E89700A07173 /* YUVShader.h */,
-			);
-			path = Shader;
-			sourceTree = "<group>";
-		};
 		1E7265A428A8932000A8965A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1E7265A728A895FD00A8965A /* WXGLView.h */,
 				1E7265A828A895FD00A8965A /* WXGLView.m */,
-				1E7494A02923E8B100A07173 /* WXGLView+Geometry.h */,
-				1E7494A12923E8B100A07173 /* WXGLView+Geometry.m */,
-				1E74949D2923E8B100A07173 /* WXGLView+Texture.h */,
-				1E74949F2923E8B100A07173 /* WXGLView+Texture.m */,
-				1E7494A22923E8B100A07173 /* WXNV12View.h */,
-				1E74949C2923E8B100A07173 /* WXNV12View.m */,
 				1E74949E2923E8B100A07173 /* WXSampleBufferDisplayView.h */,
 				1E74949B2923E8B100A07173 /* WXSampleBufferDisplayView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9D878BE4292CBE5800691853 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				9DEBD8C1293B4E4B002F3C7B /* Tutorials_001 */,
+				9DEBD8C2293B4E95002F3C7B /* Totorials_002 */,
+			);
+			path = Tutorials;
+			sourceTree = "<group>";
+		};
+		9DEBD8C1293B4E4B002F3C7B /* Tutorials_001 */ = {
+			isa = PBXGroup;
+			children = (
+				1E7265A528A8933300A8965A /* Shader.h */,
+				9D878BE5292CBE9A00691853 /* Tutorials_001_Geometry.h */,
+				9D878BE6292CBE9A00691853 /* Tutorials_001_Geometry.m */,
+				9D878BE8292CBEC000691853 /* Practices_001.h */,
+				9D878BE9292CBEC000691853 /* Practices_001.m */,
+			);
+			path = Tutorials_001;
+			sourceTree = "<group>";
+		};
+		9DEBD8C2293B4E95002F3C7B /* Totorials_002 */ = {
+			isa = PBXGroup;
+			children = (
+				1E7265AA28A948E700A8965A /* TextureShader.h */,
+				1E7494972923E89700A07173 /* YUVShader.h */,
+				9DEBD8C3293B4ED1002F3C7B /* Tutorials_002_Texture.h */,
+				9DEBD8C4293B4ED1002F3C7B /* Tutorials_002_Texture.m */,
+			);
+			path = Totorials_002;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E7494A42923E8B100A07173 /* WXNV12View.m in Sources */,
+				9D878BEA292CBEC000691853 /* Practices_001.m in Sources */,
 				1E72659128A892E100A8965A /* ViewController.m in Sources */,
 				1E7265A928A895FD00A8965A /* WXGLView.m in Sources */,
 				1E72658B28A892E100A8965A /* AppDelegate.m in Sources */,
@@ -224,8 +240,8 @@
 				1E74949A2923E8A200A07173 /* WXCVPixelBufferUtil.m in Sources */,
 				1E7494A32923E8B100A07173 /* WXSampleBufferDisplayView.m in Sources */,
 				1E72658E28A892E100A8965A /* SceneDelegate.m in Sources */,
-				1E7494A62923E8B100A07173 /* WXGLView+Geometry.m in Sources */,
-				1E7494A52923E8B100A07173 /* WXGLView+Texture.m in Sources */,
+				9DEBD8C5293B4ED1002F3C7B /* Tutorials_002_Texture.m in Sources */,
+				9D878BE7292CBE9A00691853 /* Tutorials_001_Geometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,8 +384,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QR73L59RQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenGLTutorials/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "为确保你能使用扫一扫、刷脸、拍摄照片及视频等服务，支付宝需要申请你的相机权限。允许后，你可以随时通过手机系统设置对授权进行管理。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -395,8 +413,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QR73L59RQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenGLTutorials/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "为确保你能使用扫一扫、刷脸、拍摄照片及视频等服务，支付宝需要申请你的相机权限。允许后，你可以随时通过手机系统设置对授权进行管理。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

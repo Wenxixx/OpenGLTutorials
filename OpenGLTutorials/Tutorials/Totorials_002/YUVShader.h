@@ -42,28 +42,28 @@ NSString *const nv12fragmentShaderString = SHADER_STRING
  }
 );
 
-//NSString *const yuvfragmentShaderString = SHADER_STRING
-//(
-// varying highp vec2 textureCoordsOut;
-//
-// uniform sampler2D y_texture;
-// uniform sampler2D u_texture;
-// uniform sampler2D v_texture;
-//
-// void main(void) {
-//
-//     highp float y = texture2D(y_texture, textureCoordsOut).r;
-//     highp float u = texture2D(u_texture, textureCoordsOut).r - 0.5;
-//     highp float v = texture2D(v_texture, textureCoordsOut).r - 0.5;
-//
-//     highp float r = y +             1.402 * v;
-//     highp float g = y - 0.344 * u - 0.714 * v;
-//     highp float b = y + 1.772 * u;
-//
-//     gl_FragColor = vec4(r,g,b,1.0);
-//
-// }
-//);
+NSString *const yuvfragmentShaderString = SHADER_STRING
+(
+ varying highp vec2 textureCoordsOut;
+
+ uniform sampler2D y_texture;
+ uniform sampler2D u_texture;
+ uniform sampler2D v_texture;
+
+ void main(void) {
+
+     highp float y = texture2D(y_texture, textureCoordsOut).r;
+     highp float u = texture2D(u_texture, textureCoordsOut).r - 0.5;
+     highp float v = texture2D(v_texture, textureCoordsOut).r - 0.5;
+
+     highp float r = y +             1.402 * v;
+     highp float g = y - 0.344 * u - 0.714 * v;
+     highp float b = y + 1.772 * u;
+
+     gl_FragColor = vec4(r,g,b,1.0);
+
+ }
+);
 
 
 #endif /* YUVShader_h */

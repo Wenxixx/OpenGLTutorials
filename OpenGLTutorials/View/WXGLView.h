@@ -9,18 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum : NSUInteger {
-    GLShaderTypeNormal,
-    GLShaderTypeTexture
-} GLShaderType;
-
-
 @interface WXGLView : UIView
 
-@property (nonatomic, strong) EAGLContext *context;
-@property (nonatomic, assign) GLShaderType shaderType;
+// 渲染相机rgb格式数据
+- (void)renderWithCameraRgbData:(char*)rgbData width:(int)width height:(int)height;
 
-//@property (nonatomic, strong) dispatch_queue_t renderQueue;
+// 渲染相机YUV格式数据
+- (void)renderWithYData:(char*)YData UVData:(char*)UVData width:(int)width height:(int)height;
 
 @end
 
