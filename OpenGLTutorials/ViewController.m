@@ -36,7 +36,7 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
     // Do any additional setup after loading the view.    
     // 设置视频流格式
-    self.outputType = AVOutputTypeYUV;
+    self.outputType = AVOutputTypeRGBA;
     
     self.session = [[AVCaptureSession alloc] init];
     self.session.sessionPreset = AVCaptureSessionPreset640x480;
@@ -106,11 +106,11 @@ typedef enum : NSUInteger {
                                         UVData:(char*)uv_frame
                                          width:(int)pixelWidth
                                         height:(int)pixelHeight];
+            // TODO: fix crash
 //            [self.sampleBufferView displayWithNV12yBuffer:y_frame
 //                                                 uvBuffer:uv_frame
 //                                                    width:(int)pixelWidth
 //                                                   height:(int)pixelHeight];
-            
         } else {
             uint8_t *rgbaData = CVPixelBufferGetBaseAddress(imageBuffer);
             size_t width = CVPixelBufferGetWidth(imageBuffer);
@@ -118,9 +118,9 @@ typedef enum : NSUInteger {
             [self.glRenderView renderWithCameraRgbData:(char *)rgbaData
                                                  width:(int)width
                                                 height:(int)height];
-//            [self.sampleBufferView displayWithRGBBuffer:rgbaData
-//                                                  width:(int)width
-//                                                 height:(int)height];
+            [self.sampleBufferView displayWithRGBBuffer:rgbaData
+                                                  width:(int)width
+                                                 height:(int)height];
         }
         CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
     }

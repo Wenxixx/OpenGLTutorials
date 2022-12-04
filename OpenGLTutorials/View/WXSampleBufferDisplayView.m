@@ -37,25 +37,29 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-//        [self createLayer];
-//        _textureWidth = 640;
-//        _textureHeight = 480;
-//        [self createPixelBufferPool:_textureWidth
-//                             height:_textureHeight
-//                             format:GL_BGRA];
-//
-//        _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-//        if (_context) {
-//            [self setupBuffers];
-//        }
+        [self createLayer];
+        _textureWidth = 640;
+        _textureHeight = 480;
+        [self createPixelBufferPool:_textureWidth
+                             height:_textureHeight
+                             format:GL_BGRA];
+
+        _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        if (_context) {
+            //
+            if ([EAGLContext currentContext] != _context) {
+                [EAGLContext setCurrentContext:_context];
+                [self setupBuffers];
+            }
+        }
     }
     return self;
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-//    [CATransaction setDisableActions:YES];
-//    self.displayLayer.frame = self.bounds;
+    [CATransaction setDisableActions:YES];
+    self.displayLayer.frame = self.bounds;
 }
 
 -(void)createLayer
