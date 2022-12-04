@@ -39,15 +39,14 @@
     _textureCoords = glGetAttribLocation(program, "textureCoords");
     glEnableVertexAttribArray(_vertexPosition);
     glEnableVertexAttribArray(_textureCoords);
-//    [self setupTexture];
+    [self setupTexture];
 
-    
     // YUV-nv12格式
-    _y_textureUniformLocation = glGetUniformLocation(program, "y_texture");
-    _uv_textureUniformLocation = glGetUniformLocation(program, "uv_texture");
-    _y_textureUniformLocation = glGetUniformLocation(program, "y_texture");
-    _uv_textureUniformLocation = glGetUniformLocation(program, "uv_texture");
-    [self setupTextureYUV_NV12];
+//    _y_textureUniformLocation = glGetUniformLocation(program, "y_texture");
+//    _uv_textureUniformLocation = glGetUniformLocation(program, "uv_texture");
+//    _y_textureUniformLocation = glGetUniformLocation(program, "y_texture");
+//    _uv_textureUniformLocation = glGetUniformLocation(program, "uv_texture");
+//    [self setupTextureYUV_NV12];
     
     //
 //    [self setupTextureYUV];

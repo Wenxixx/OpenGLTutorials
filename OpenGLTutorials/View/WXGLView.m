@@ -63,8 +63,8 @@
 //        [self.render renderWithContext:_context];
         
         // 纹理渲染相机（rgba / nv12 / yuv）
-//        [self createPrograme:textureVertexShaderString fragmentShader:textureFragmentShaderString]; // rgba
-        [self createPrograme:nv12vertexShaderString fragmentShader:nv12fragmentShaderString]; // nv12
+        [self createPrograme:textureVertexShaderString fragmentShader:textureFragmentShaderString]; // rgba
+//        [self createPrograme:nv12vertexShaderString fragmentShader:nv12fragmentShaderString]; // nv12
 //        [self createPrograme:nv12vertexShaderString fragmentShader:yuvfragmentShaderString]; // yuvv12
         self.render = [[Tutorials_002_Texture alloc] init];
         [self.render setupExtraEnv:_program];
