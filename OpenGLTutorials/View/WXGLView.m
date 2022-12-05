@@ -53,22 +53,23 @@
     self = [super initWithCoder:coder];
     if (self) {
         [self commonInit];
-//        [self createPrograme:vertexShaderString fragmentShader:fragmentShaderString];
+        [self createPrograme:vertexShaderString fragmentShader:fragmentShaderString];
 //        self.render = [[Tutorials_001_Geometry alloc] init];
+        self.render = [[Practices_001 alloc] init];
         
         // 纹理渲染图片（rgba）
 //        [self createPrograme:textureVertexShaderString fragmentShader:textureFragmentShaderString];
 //        self.render = [[Tutorials_002_Texture alloc] init];
-//        [self.render setupExtraEnv:_program];
-//        [self.render renderWithContext:_context];
         
         // 纹理渲染相机（rgba / nv12 / yuv）
         [self createPrograme:textureVertexShaderString fragmentShader:textureFragmentShaderString]; // rgba
 //        [self createPrograme:nv12vertexShaderString fragmentShader:nv12fragmentShaderString]; // nv12
 //        [self createPrograme:nv12vertexShaderString fragmentShader:yuvfragmentShaderString]; // yuvv12
-        self.render = [[Tutorials_002_Texture alloc] init];
-        [self.render setupExtraEnv:_program];
+//        self.render = [[Tutorials_002_Texture alloc] init];
         
+        
+        [self.render setupExtraEnv:_program];
+        [self.render renderWithContext:_context];
     }
     return self;
 }

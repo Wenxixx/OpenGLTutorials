@@ -10,7 +10,10 @@
 #import <OpenGLES/ES3/gl.h>
 #import <UIKit/UIKit.h>
 
-@implementation Practices_001
+@implementation Practices_001 {
+    GLuint _VBOs[2];
+    GLuint _VAOs[2];
+}
 
 #pragma mark - WXRenderProtocol
 
@@ -22,7 +25,8 @@
 - (void)renderWithContext:(EAGLContext *)context {
 //    [self drawTwoTriangle:context];
     
-    [self drawTwoSameTriangles:context];
+    [self drawTwoSameTrianglesByVAO:context];
+    [self drawTwoSameTrianglesByVBO:context];
 }
 
 // 练习1：绘制两个相连的三角形 https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
@@ -59,47 +63,88 @@
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
-// 创建相同的两个三角形，但对它们的数据使用不同的VAO和VBO
-- (void)drawTwoSameTriangles:(EAGLContext *)context
-{
+- (void)setupVAO {
     float verteices_first[] = {
         -1.0f, 1.0f, 0.0f,
         -1.0f, 0.0f, 0.0f,
         0.0f, 0.0f, 0.0f,
     };
-    
     float verteices_second[] = {
         0.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
         1.0f, -1.0f, 0.0f,
     };
+    glGenVertexArrays(2, _VAOs);
+    glGenBuffers(2, _VBOs);
     
-    GLuint VBOs[2], VAOs[2];
-    glGenVertexArrays(2, VAOs);
-    glGenBuffers(2, VBOs);
-    
-    glBindVertexArray(VAOs[0]);
-//    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_first), verteices_first, GL_STATIC_DRAW);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-//    glEnableVertexAttribArray(0);
-    
-    glBindVertexArray(VAOs[1]);
-//    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_second), verteices_second, GL_STATIC_DRAW);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-//    glEnableVertexAttribArray(0);
-
     // 背景
     glClearColor(0.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    glBindVertexArray(_VAOs[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_first), verteices_first, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
     
-    glBindVertexArray(VAOs[0]);
+    glBindVertexArray(_VAOs[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_second), verteices_second, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+}
+
+- (void)setupVBO {
+    float verteices_first[] = {
+        -1.0f, 1.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
+    };
+    float verteices_second[] = {
+        0.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,
+    };
+    glGenBuffers(2, _VBOs);
+    
+    // 背景
+    glClearColor(0.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_first), verteices_first, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verteices_second), verteices_second, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+}
+
+// 创建相同的两个三角形，但对它们的数据使用不同的VAO和VBO
+- (void)drawTwoSameTrianglesByVAO:(EAGLContext *)context
+{
+    [self setupVAO];
+    glBindVertexArray(_VAOs[0]);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(_VAOs[1]);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+- (void)drawTwoSameTrianglesByVBO:(EAGLContext *)context
+{
+    [self setupVBO];
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[0]);
+    // 每次bind vbo之后还得再次设置取值方式，否则绘制不出来
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
-    glBindVertexArray(VAOs[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, _VBOs[1]);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
