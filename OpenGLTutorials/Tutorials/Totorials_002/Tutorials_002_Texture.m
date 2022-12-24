@@ -14,7 +14,10 @@
     GLint _textureCoords;
     
     // 纹理参数
-    GLuint _rgbTexture;
+    GLuint _jpgTexture;
+    GLuint _pngTexture;
+    GLint _inputTextureUniformLoc;
+    GLint _maskTextureUniformLoc;
     
     // 渲染yuv
     GLint _y_textureUniformLocation;
@@ -39,7 +42,15 @@
     _textureCoords = glGetAttribLocation(program, "textureCoords");
     glEnableVertexAttribArray(_vertexPosition);
     glEnableVertexAttribArray(_textureCoords);
-    [self setupTexture];
+    
+    _inputTextureUniformLoc = glGetUniformLocation(program, "inputTexture");
+    _maskTextureUniformLoc = glGetUniformLocation(program, "maskTexture");
+
+    glGenTextures(1, &_jpgTexture);
+    glGenTextures(1, &_pngTexture);
+
+    [self setupTexture:_jpgTexture];
+    [self setupTexture:_pngTexture];
 
     // YUV-nv12格式
 //    _y_textureUniformLocation = glGetUniformLocation(program, "y_texture");
@@ -55,7 +66,17 @@
 // 渲染图片
 - (void)renderWithContext:(EAGLContext *)context
 {
-    [self drawImageWithContext:context];
+    //清屏 色
+    glClearColor(1.0, 1.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"texture" ofType:@"jpg"];
+    [self drawImageWithContext:context imagePath:filePath textureid:_jpgTexture];
+    
+    filePath = [[NSBundle mainBundle] pathForResource:@"bilinearfiltering" ofType:@"png"];
+    [self drawImageWithContext:context imagePath:filePath textureid:_pngTexture];
+    
+    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 #pragma mark - Public
@@ -189,11 +210,9 @@
 
 #pragma mark - Private
 // 纹理顶点数据和纹理UV坐标一次上传（bufferData方式）
-- (void)setupTexture
+- (void)setupTexture:(GLuint)textureid
 {
-    glGenTextures(1, &_rgbTexture);
-    glBindTexture(GL_TEXTURE_2D, _rgbTexture);
-    
+    glBindTexture(GL_TEXTURE_2D, textureid);
     //设置一些边缘的处理
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -348,10 +367,10 @@
 //}
 
 // 绘制图片
-- (void)drawImageWithContext:(EAGLContext *)context
+- (void)drawImageWithContext:(EAGLContext *)context imagePath:(NSString *)filePath textureid:(GLuint)textureid
 {
-    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"bilinearfiltering" ofType:@"png"];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"texture" ofType:@"jpg"];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"bilinearfiltering" ofType:@"png"];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"texture" ofType:@"jpg"];
     UIImage *image = [UIImage imageWithContentsOfFile:filePath];
     CGImageRef cgImageRef = [image CGImage];
     GLuint width = (GLuint)CGImageGetWidth(cgImageRef);
@@ -366,6 +385,16 @@
     CGColorSpaceRelease(colorSpace);
     CGContextDrawImage(ctx, rect, cgImageRef);
     
+    glActiveTexture(GL_TEXTURE0 + textureid);
+    glBindTexture(GL_TEXTURE_2D, textureid);
+    if (textureid == _jpgTexture) {
+        glUniform1i(_maskTextureUniformLoc, textureid);
+//        glUniform1i(_inputTextureUniformLocation, textureid);
+    } else {
+        glUniform1i(_inputTextureUniformLoc, textureid);
+//        glUniform1i(_maskTextureUniformLocation, textureid);
+    }
+    
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
                  image.size.width, image.size.height,
                  0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -373,14 +402,10 @@
     CGContextRelease(ctx);
     free(data);
     
-    //清屏
-    glClearColor(1.0, 1.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
     // 方式一：索引
     const GLint Indices[] = {
         0, 1, 3,
-        1, 2, 3
+        0, 2, 3
     };
     GLuint indexBuffer;
     glGenBuffers(1, &indexBuffer);
@@ -392,7 +417,7 @@
 //    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);  // GL_TRIANGLE_FAN
     
     //EACAGLContext 渲染OpenGL绘制好的图像到EACAGLLayer
-    [context presentRenderbuffer:GL_RENDERBUFFER];
+//    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 @end

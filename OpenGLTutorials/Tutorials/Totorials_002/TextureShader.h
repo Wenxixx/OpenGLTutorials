@@ -27,8 +27,11 @@ NSString *const textureFragmentShaderString = SHADER_STRING
     varying highp vec2 textureCoordsOut;
  
     uniform sampler2D inputTexture;
+    uniform sampler2D maskTexture;
     void main(void) {
-        gl_FragColor = texture2D(inputTexture, textureCoordsOut);
+        gl_FragColor = mix(texture2D(inputTexture, textureCoordsOut),
+                           texture2D(maskTexture, textureCoordsOut), 0.5);
+//        gl_FragColor = texture2D(inputTexture, textureCoordsOut);
     }
 );
 
